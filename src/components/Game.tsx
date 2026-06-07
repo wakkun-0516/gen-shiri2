@@ -189,50 +189,54 @@ function Game({ onNext, onStart,playerStates,setPlayerStates,rules }: Props) {
                         <p>今までに引いた数:{playerStates[1].lengthList.join(',')}</p>
                     </div>
                 </div>
-                <p>プレイヤー{turn+1}の番です</p>
-                <div>
+                <p className='turn-text'>プレイヤー{turn+1}の番です</p>
+                <div className='lifeline'>
                     <p>使えるライフライン</p>
-                    {playerStates[turn].pass && 
-                        <button onClick={() => {
-                            const next = getRequestLen(1-turn)
-                            setRequestLen(next)
-                            //引いた数の一覧・ん回し・文字数減らし・追加の文字数を更新
-                            const newStates:playerStates = [{...playerStates[0]},{...playerStates[1]}]
-                            newStates[1-turn].lengthList.push(next-playerStates[1-turn].addLength)
-                            newStates[turn].pass = false
-                            setPlayerStates(newStates)
-                            
-                            setAnsText('')
-                            setComposing('')
-                            setTurn(1-turn)
-                        }}
-                        >パス
-                        </button>
-                    }
-                    {playerStates[turn].nmawashi && 
-                        <label>
-                            <input 
-                                type='checkbox' 
-                                checked={checkedNmawashi}
-                                onChange={(e) => setCheckedNmawashi(e.target.checked)}
-                            />ん回し
-                        </label>
-                    }
-                    {playerStates[turn].herashi &&
-                        <label>
-                            <input 
-                                type='checkbox' 
-                                checked={checkedHerashi}
-                                onChange={(e) => setCheckedHerashi(e.target.checked)}
-                            />文字数減らし
-                        </label>
-                    }
+                    <div className='lifeline-options'>
+                        {playerStates[turn].pass && 
+                            <button onClick={() => {
+                                const next = getRequestLen(1-turn)
+                                setRequestLen(next)
+                                //引いた数の一覧・ん回し・文字数減らし・追加の文字数を更新
+                                const newStates:playerStates = [{...playerStates[0]},{...playerStates[1]}]
+                                newStates[1-turn].lengthList.push(next-playerStates[1-turn].addLength)
+                                newStates[turn].pass = false
+                                setPlayerStates(newStates)
+                                
+                                setAnsText('')
+                                setComposing('')
+                                setTurn(1-turn)
+                            }}
+                            >パス
+                            </button>
+                        }
+                        {playerStates[turn].nmawashi && 
+                            <label>
+                                <input 
+                                    type='checkbox' 
+                                    checked={checkedNmawashi}
+                                    onChange={(e) => setCheckedNmawashi(e.target.checked)}
+                                />ん回し
+                            </label>
+                        }
+                        {playerStates[turn].herashi &&
+                            <label>
+                                <input 
+                                    type='checkbox' 
+                                    checked={checkedHerashi}
+                                    onChange={(e) => setCheckedHerashi(e.target.checked)}
+                                />文字数減らし
+                            </label>
+                        }
+                    </div>
                 </div>
-                <p>文字数:{
-                    requestLen-playerStates[turn].addLength+
-                    (playerStates[turn].addLength !== 0 ? `+${playerStates[turn].addLength}` : '')
+                <div className='game-info'>
+                    <p>文字数:{
+                        requestLen-playerStates[turn].addLength+
+                        (playerStates[turn].addLength !== 0 ? `+${playerStates[turn].addLength}` : '')
                     }文字</p>
                 <p>最初の文字:{requestHead}</p>
+                </div>
                 <div className='answer-area'>
                     <p>ひらがな表示です</p>
                     <input
@@ -252,9 +256,11 @@ function Game({ onNext, onStart,playerStates,setPlayerStates,rules }: Props) {
                             }
                         }}
                     />
-                    <button onClick={answer}>回答</button>
-                    <button onClick={() => setIsPaused(!isPaused)}>{isPaused ? '再開' : '一時停止'}</button>
-                    <button onClick={onStart}>ゲームをやめる</button>
+                    <div className='button-group'>
+                        <button onClick={answer}>回答</button>
+                        <button onClick={() => setIsPaused(!isPaused)}>{isPaused ? '再開' : '一時停止'}</button>
+                        <button onClick={onStart}>ゲームをやめる</button>
+                    </div>
                 </div>
             </div>
         )

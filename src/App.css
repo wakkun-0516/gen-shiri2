@@ -1,13 +1,13 @@
-/* 全体 */
+/* ===== 共通 ===== */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: #f4f6fb;
-  color: #222;
-  font-family: "Yu Gothic", sans-serif;
+  background: #eef2ff;
+  font-family: "Segoe UI", "Yu Gothic", sans-serif;
+  color: #1e293b;
 }
 
 #root {
@@ -18,68 +18,135 @@ body {
 
 .app {
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
 }
+
+/* ===== タイトル ===== */
 
 h1 {
   text-align: center;
-  margin-bottom: 32px;
   color: #2563eb;
+  margin-bottom: 32px;
+  font-size: 40px;
 }
 
-/* カード */
+/* ===== カード ===== */
+
 .card {
   background: white;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* プレイヤー表示 */
+/* ===== プレイヤー欄 ===== */
+
 .players {
   display: flex;
   gap: 20px;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 .player-card {
   flex: 1;
-  background: #fafafa;
-  border-radius: 16px;
-  padding: 16px;
-  border: 1px solid #ddd;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 20px;
+  transition: .2s;
+}
+
+.player-card:hover {
+  transform: translateY(-2px);
 }
 
 .player-card h2 {
   margin-top: 0;
+  color: #2563eb;
 }
 
-/* ボタン */
+/* ===== 現在のターン ===== */
+
+.turn-text {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 24px 0;
+}
+
+/* ===== 情報欄 ===== */
+
+.game-info {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 16px;
+  margin: 24px 0;
+}
+
+.game-info p {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+/* ===== ライフライン ===== */
+
+.lifeline {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.lifeline-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ===== 入力欄 ===== */
+
+.answer-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input[type="text"],
+input[type="number"] {
+  border: 2px solid #dbeafe;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 16px;
+  outline: none;
+  transition: .2s;
+}
+
+input:focus {
+  border-color: #2563eb;
+}
+
+/* ===== ボタン ===== */
+
 button {
   border: none;
+  border-radius: 14px;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: bold;
   background: #2563eb;
   color: white;
-  padding: 12px 18px;
-  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
   transition: .2s;
 }
 
 button:hover {
-  opacity: .9;
   transform: translateY(-2px);
+  opacity: .9;
 }
 
 button:active {
-  transform: translateY(0);
-}
-
-/* ボタン並び */
-.button-group {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  transform: scale(.98);
 }
 
 .active-button {
@@ -92,69 +159,30 @@ button:active {
   color: #666;
 }
 
-/* input */
-input[type="text"],
-input[type="number"] {
-  width: 100%;
-  padding: 12px;
-  margin-top: 8px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 16px;
-}
+/* ===== ボタン並び ===== */
 
-.setting-row {
-  margin-bottom: 20px;
-}
-
-.setting-row label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-/* ゲーム情報 */
-.game-info {
-  margin: 24px 0;
-  font-size: 18px;
-}
-
-.game-info p {
-  margin: 10px 0;
-}
-
-/* 回答欄 */
-.answer-area {
+.button-group {
   display: flex;
-  flex-direction: column;
   gap: 12px;
-  margin-top: 24px;
+  flex-wrap: wrap;
 }
 
-/* ライフライン */
-.lifeline {
-  margin: 20px 0;
+/* ===== OFF状態 ===== */
+
+.disabled-button {
+  background: #cbd5e1;
+  color: #64748b;
 }
 
-.lifeline label {
-  margin-right: 16px;
-}
+/* ===== レスポンシブ ===== */
 
-/* 結果画面 */
-.result {
-  text-align: center;
-}
+@media (max-width: 768px) {
 
-.result h2 {
-  color: crimson;
-}
-
-.result h3 {
-  color: #2563eb;
-}
-
-/* スマホ対応 */
-@media (max-width: 700px) {
   .players {
+    flex-direction: column;
+  }
+
+  .button-group {
     flex-direction: column;
   }
 
