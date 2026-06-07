@@ -138,7 +138,7 @@ function Game({ onNext, onStart,playerStates,setPlayerStates,rules }: Props) {
 
         //引いた数の一覧・ん回し・文字数減らし・追加の文字数を更新
         const newStates:playerStates = [{...playerStates[0]},{...playerStates[1]}]
-        newStates[1-turn].lengthList.push(next)
+        newStates[1-turn].lengthList.push(next-playerStates[1-turn].addLength)
         if (checkedHerashi){
             newStates[turn].herashi = false
         }
@@ -198,7 +198,7 @@ function Game({ onNext, onStart,playerStates,setPlayerStates,rules }: Props) {
                             setRequestLen(next)
                             //引いた数の一覧・ん回し・文字数減らし・追加の文字数を更新
                             const newStates:playerStates = [{...playerStates[0]},{...playerStates[1]}]
-                            newStates[1-turn].lengthList.push(next)
+                            newStates[1-turn].lengthList.push(next-playerStates[1-turn].addLength)
                             newStates[turn].pass = false
                             setPlayerStates(newStates)
                             
