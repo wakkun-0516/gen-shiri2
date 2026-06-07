@@ -1,13 +1,15 @@
+
+
 type Props = {
-    onNext: () => void;
+  onNext: () => void;
 };
 
-function Start({onNext}:Props) {
-    return (
-      <div>
-        <button onClick={onNext}>ゲームを始める</button>
-      </div>
-    )
+function Start({ onNext }: Props) {
+  return (
+    <div className="card">
+      <button onClick={onNext}>ゲームを始める</button>
+    </div>
+  )
 }
 
 export default Start;

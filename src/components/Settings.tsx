@@ -13,7 +13,7 @@ function Settings({onNext,rules,setRules}:Props) {
   const [onHandicap,setOnHandicap] = useState<boolean>(false)
 
 	return(
-	  <div>
+	  <div className='card'>
         <h2>ルール設定</h2>
         <label>
           <input 
@@ -25,7 +25,9 @@ function Settings({onNext,rules,setRules}:Props) {
         </label>
         <Setting onHandicap={onHandicap} player={1} rules={rules} setRules={setRules}/>
         {onHandicap && <Setting onHandicap={onHandicap} player={2} rules={rules} setRules={setRules}/>}
-        <button onClick={onNext}>スタート</button>
+        <button onClick={() => {
+          onNext()
+        }}>スタート</button>
       </div>
 	)
 }

@@ -19,6 +19,10 @@ function Setting({onHandicap,player,rules,setRules}:Props) {
               onChange={(e) => {
                 const newRules: [Rule, Rule] = [{...rules[0]},{...rules[1]}]
                 newRules[player-1].timeLimit = Number(e.target.value)
+                if (newRules[player-1].timeLimit<=0) {
+                  alert('持ち時間は1秒以上にしてください')
+                  return;
+                }
                 if (!onHandicap) {
                   newRules[player].timeLimit = Number(e.target.value)                
                 }
@@ -34,6 +38,10 @@ function Setting({onHandicap,player,rules,setRules}:Props) {
               onChange={(e) => {
                 const newRules: [Rule, Rule] = [{...rules[0]},{...rules[1]}]
                 newRules[player-1].minLength = Number(e.target.value)
+                if (newRules[player-1].minLength < 2){
+                  alert('2文字以上にしてください')
+                  return;
+                }
                 if (!onHandicap) {
                   newRules[player].minLength = Number(e.target.value)                
                 }
@@ -49,6 +57,10 @@ function Setting({onHandicap,player,rules,setRules}:Props) {
               onChange={(e) => {
                 const newRules: [Rule, Rule] = [{...rules[0]},{...rules[1]}]
                 newRules[player-1].maxLength = Number(e.target.value)
+                if (newRules[player-1].maxLength<2){
+                  alert('2文字以上にしてください')
+                  return 
+                }
                 if (!onHandicap) {
                   newRules[player].maxLength = Number(e.target.value)                
                 }
@@ -59,7 +71,9 @@ function Setting({onHandicap,player,rules,setRules}:Props) {
           <div>
             ライフライン
             <div>
-              <button onClick={() => {
+              <button
+                className={rules[player - 1].nmawashi ? "active-button" : "inactive-button"}
+                onClick={() => {
                 const newRules: [Rule, Rule] = [{...rules[0]},{...rules[1]}]
                 newRules[player-1].nmawashi = !newRules[player-1].nmawashi
                 if (!onHandicap) {
@@ -67,7 +81,9 @@ function Setting({onHandicap,player,rules,setRules}:Props) {
                 }
                 setRules(newRules)
               }}>ん回し</button>
-              <button onClick={() => {
+              <button
+                className={rules[player - 1].pass ? "active-button" : "inactive-button"}
+                onClick={() => {
                 const newRules: [Rule, Rule]= [{...rules[0]},{...rules[1]}]
                 newRules[player-1].pass = !newRules[player-1].pass
                 if (!onHandicap) {
@@ -75,7 +91,9 @@ function Setting({onHandicap,player,rules,setRules}:Props) {
                 }
                 setRules(newRules)
               }}>パス</button>
-              <button onClick={() => {
+              <button
+                className={rules[player - 1].herashi ? "active-button" : "inactive-button"}
+                onClick={() => {
                 const newRules: [Rule, Rule] = [{...rules[0]},{...rules[1]}]
                 newRules[player-1].herashi = !newRules[player-1].herashi
                 if (!onHandicap) {
