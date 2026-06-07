@@ -14,21 +14,23 @@ export type Rule = {
   herashi: boolean;
 };
 
-export type Rules = [Rule, Rule]
+export type Rules = [Rule, Rule];
 
-export type playerState = {
+export type PlayerState = {
   time: number;
   nmawashi: boolean;
   pass: boolean;
   herashi: boolean;
   lengthList: number[]
-  addLength:number
-}
+  addLength: number
+};
 
-export type playerStates = [playerState, playerState]
+export type PlayerStates = [PlayerState, PlayerState];
+
+type Step = "Start" | "Settings" | "Game" | "Result";
 
 function App() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState<Step>("Start");
 
   const [rules, setRules] = useState<Rules>([
     {
@@ -47,16 +49,16 @@ function App() {
       pass: true,
       herashi: true
     }
-  ])
+  ]);
 
-  const [playerStates, setPlayerStates] = useState<playerStates>([
+  const [playerStates, setPlayerStates] = useState<PlayerStates>([
     {
       time: rules[0].timeLimit,
       nmawashi: rules[0].nmawashi,
       pass: rules[0].pass,
       herashi: rules[0].herashi,
       lengthList: [],
-      addLength:0
+      addLength: 0
     },
     {
       time: rules[1].timeLimit,
@@ -64,34 +66,34 @@ function App() {
       pass: rules[1].pass,
       herashi: rules[1].herashi,
       lengthList: [],
-      addLength:0
+      addLength: 0
     }
-  ])
+  ]);
 
   return (
     <div className='app'>
       <h1>限界しりとり</h1>
-      {step === 0 && (
-        <Start onNext={() => setStep(1)} />
+      {step === "Start" && (
+        <Start onNext={() => setStep("Settings")} />
       )}
-      {step === 1 && (
+      {step === "Settings" && (
         <Settings
-          onNext={() => setStep(2)}
+          onNext={() => setStep("Game")}
           rules={rules}
           setRules={setRules}
         />
       )}
-      {step === 2 && (
-        <Game onNext={() => setStep(3)}
-          onStart={() => setStep(0)}
+      {step === "Game" && (
+        <Game onNext={() => setStep("Result")}
+          onStart={() => setStep("Start")}
           playerStates={playerStates}
           setPlayerStates={setPlayerStates}
           rules={rules}
         />
       )}
-      {step === 3 && (
+      {step === "Result" && (
         <Result
-          onNext={() => setStep(0)}
+          onNext={() => setStep("Start")}
           playerStates={playerStates}
         />
       )}

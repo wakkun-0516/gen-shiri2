@@ -1,5 +1,3 @@
-
-
 type Props = {
   onNext: () => void;
 };

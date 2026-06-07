@@ -3,14 +3,14 @@ import type { Rules } from '../App';
 import Setting from './Setting'
 
 type Props = {
-    onNext: () => void;
-    rules:Rules;
-    setRules: React.Dispatch<React.SetStateAction<Rules>>
+  onNext: () => void;
+  rules: Rules;
+  setRules: React.Dispatch<React.SetStateAction<Rules>>
 };
 
 
-function Settings({onNext,rules,setRules}:Props) {
-  const [onHandicap,setOnHandicap] = useState<boolean>(false)
+function Settings({ onNext, rules, setRules }: Props) {
+  const [onHandicap, setOnHandicap] = useState<boolean>(false)
 
 	return(
 	  <div className='card'>
@@ -21,13 +21,11 @@ function Settings({onNext,rules,setRules}:Props) {
             checked={onHandicap} 
             onChange={(e) => setOnHandicap(e.target.checked)}
           />
-            ハンデを使用する
+          ハンデを使用する
         </label>
         <Setting onHandicap={onHandicap} player={1} rules={rules} setRules={setRules}/>
         {onHandicap && <Setting onHandicap={onHandicap} player={2} rules={rules} setRules={setRules}/>}
-        <button onClick={() => {
-          onNext()
-        }}>スタート</button>
+        <button onClick={onNext}>スタート</button>
       </div>
 	)
 }
