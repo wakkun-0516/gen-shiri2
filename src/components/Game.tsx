@@ -170,12 +170,12 @@ function Game({ onNext, onStart, playerStates, setPlayerStates, rules }: Props) 
   return (
     <div className='card'>
       <div className='players'>
-        <div className='player-card'>
+        <div className={`player-card ${turn === 0 ? "active-player" : ""}`}>
           <h2>プレイヤー1</h2>
           <p>残り{playerStates[0].time}秒</p>
           <p>今までに引いた数:{playerStates[0].lengthList.join(',')}</p>
         </div>
-        <div className='player-card'>
+        <div className={`player-card ${turn === 1 ? "active-player" : ""}`}>
           <h2>プレイヤー2</h2>
           <p>残り{playerStates[1].time}秒</p>
           <p>今までに引いた数:{playerStates[1].lengthList.join(',')}</p>

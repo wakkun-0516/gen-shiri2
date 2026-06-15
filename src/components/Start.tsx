@@ -4,7 +4,7 @@ type Props = {
 
 function Start({ onNext }: Props) {
   return (
-    <div className="card">
+    <div className="card start-card">
       <button onClick={onNext}>ゲームを始める</button>
     </div>
   )

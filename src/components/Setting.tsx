@@ -9,10 +9,10 @@ type Props = {
 
 function Setting({ onHandicap, player, rules, setRules }:Props) {
     return(
-        <div>
+        <div className='settings-container'>
           {onHandicap && <h3>プレイヤー{player}</h3>}
-          <div>
-            持ち時間(秒)
+          <div className='setting-row'>
+            <span>持ち時間(秒)</span>
             <input
               type='number'
               value={rules[player-1].timeLimit}
@@ -30,8 +30,8 @@ function Setting({ onHandicap, player, rules, setRules }:Props) {
               }}
             />
           </div>
-          <div>
-            最小の文字数(2以上)
+          <div className='setting-row'>
+            <span>最小の文字数(2以上)</span>
             <input
               type='number'
               value={rules[player-1].minLength}
@@ -49,8 +49,8 @@ function Setting({ onHandicap, player, rules, setRules }:Props) {
               }}
             />
           </div>
-          <div>
-            最大の文字数(2以上)
+          <div className='setting-row'>
+            <span>最大の文字数(2以上)</span>
             <input
               type='number'
               value={rules[player-1].maxLength}
@@ -70,7 +70,7 @@ function Setting({ onHandicap, player, rules, setRules }:Props) {
           </div>
           <div>
             ライフライン
-            <div>
+            <div className='lifeline-buttons'>
               <button
                 className={rules[player - 1].nmawashi ? "active-button" : "inactive-button"}
                 onClick={() => {

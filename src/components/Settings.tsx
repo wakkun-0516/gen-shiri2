@@ -13,7 +13,7 @@ function Settings({ onNext, rules, setRules }: Props) {
   const [onHandicap, setOnHandicap] = useState<boolean>(false)
 
 	return(
-	  <div className='card'>
+	  <div className='card settings'>
         <h2>ルール設定</h2>
         <label>
           <input 
