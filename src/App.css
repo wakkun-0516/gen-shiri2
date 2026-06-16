@@ -112,6 +112,7 @@ input[type="number"] {
 .settings-container {
   max-width: 500px;
   margin: 0 auto;
+  text-align: left;
 }
 
 .setting-row {
